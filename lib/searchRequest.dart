@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(SearchPage());
@@ -5,6 +7,13 @@ void main() => runApp(SearchPage());
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
   String requestNo = "";
+
+  List employees = [
+    {"id": 1, "name": "Mohan"},
+    {"id": 2, "name": "Rohit"},
+    {"id": 3, "name": "Ganesh"},
+    {"id": 4, "name": "Yogesh"}
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,32 +41,40 @@ class SearchPage extends StatelessWidget {
               },
             ),
           ),
-          Container(
-              padding: EdgeInsets.all(20),
-              child: Card(
-                  child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const ListTile(
-                    leading: Icon(Icons.art_track_rounded, size: 50),
-                    title: Text('รายการคำขอ'),
-                    subtitle: Text(
-                        'ใบอนุญาตประกอบธุรกิจจัดหางานนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        child: const Text('ตรวตสอบสถานะ'),
-                        onPressed: () {/* ... */},
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  ),
-                ],
-              )))
+          Card(
+            child: Column(mainAxisSize: MainAxisSize.min, children: getData()),
+          )
         ]),
       ),
     );
+  }
+
+  List<Widget> getData() {
+    List<Widget> data = [];
+    for (var i = 0; i < 5; i++) {
+      data.add(Card(
+          child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const ListTile(
+            leading: Icon(Icons.art_track_rounded, size: 50),
+            title: Text('รายการคำขอ'),
+            subtitle: Text(
+                'ใบอนุญาตประกอบธุรกิจจัดหางานนำคนต่างด้าวมาทำงานกับนายจ้างในประเทศ'),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              TextButton(
+                child: const Text('ตรวตสอบสถานะ'),
+                onPressed: () {/* ... */},
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
+        ],
+      )));
+    }
+    return data;
   }
 }
